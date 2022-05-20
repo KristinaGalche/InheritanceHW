@@ -27,7 +27,6 @@ class ProductManagerTest {
         Product[] actual = manager.findAll();
         Product[] expected = { book1, book2, phone1, phone2 };
         assertArrayEquals(expected, actual);
-
     }
 
     @Test
@@ -42,7 +41,6 @@ class ProductManagerTest {
         Product[] actual = manager.searchBy("sung");
         Product[] expected = { phone1 };
         assertArrayEquals(expected, actual);
-
     }
 
     @Test
@@ -57,7 +55,34 @@ class ProductManagerTest {
         Product[] actual = manager.searchBy("Sea");
         Product[] expected = { book2 };
         assertArrayEquals(expected, actual);
+    }
 
+    @Test
+    public void shouldAddAndSearchBySpace() {
+        ProductManager manager = new ProductManager();
+
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(phone1);
+        manager.add(phone2);
+
+        Product[] actual = manager.searchBy(" ");
+        Product[] expected = { book1, book2 };
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldAddAndSearchByDot() {
+        ProductManager manager = new ProductManager();
+
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(phone1);
+        manager.add(phone2);
+
+        Product[] actual = manager.searchBy(".");
+        Product[] expected = { };
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -88,6 +113,5 @@ class ProductManagerTest {
         assertArrayEquals(expected, actual);
 
     }
-
 
 }
